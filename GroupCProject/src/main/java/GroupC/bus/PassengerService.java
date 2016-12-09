@@ -5,12 +5,13 @@
  */
 package GroupC.bus;
 
+import GroupC.ent.Booking;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import GroupC.ent.Flights;
+import GroupC.ent.Flight;
 import GroupC.ent.Passenger;
 import GroupC.pers.PassengerFacade;
-import GroupC.pers.FlightsFacade;
+import GroupC.pers.FlightFacades;
 
 
 @Stateless
@@ -21,9 +22,31 @@ public class PassengerService {
     @EJB
     private PassengerFacade pf;
     @EJB
-    private FlightsFacade af;
+    private FlightFacades af;
+    @EJB
+    private Booking bt;
 
-    public Passenger changeFlight (Passenger p, Flights f) throws BusinessException {
+    public void addBooking(Passenger p, Flight f) {
+        p = pf.edit(p);
+        f = af.edit(f);
+        Booking b = new Booking(p, f);
+        //bt.create(b);
+    }
+
+    public Flight removeFromFlight(Passenger p, Flight f) {
+        p = pf.edit(p);
+        f = af.edit(f);
+        f.getPassengers().remove(p);
+        return f;
+    }
+
+    public Passenger changeAddress(Passenger p, String address) throws BusinessException {
+        p = pf.edit(p);
+        p.setAddress(address);
+        return p;
+    }
+
+    public Passenger changeFlight(Passenger p, Flight f) throws BusinessException {
         //marry up
         p = pf.edit(p);
         f = af.edit(f);
@@ -32,18 +55,17 @@ public class PassengerService {
         //return something
         return p;
     }
-    
-    public Passenger changeAddress(Passenger p, String address) throws BusinessException{
+    /*    public Passenger changeHome (Passenger p, Flight a) throws BusinessException {
+        //marry up
         p = pf.edit(p);
-        p.setAddress(address);
+        a = af.edit(a);
+
+        //business logic
+        p.getHome().getOccupants().remove(p);
+        p.setHome(a);
+        a.getOccupants().add(p);
+
+        //return something
         return p;
-    }
-    
-    public Flights removeFromFlight(Passenger p, Flights f){
-        p = pf.edit(p);
-        f = af.edit(f);
-        
-        f.getPassengers().remove(p);
-        return f;
-    }
+    }*/
 }

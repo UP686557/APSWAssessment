@@ -5,18 +5,17 @@
  */
 package GroupC.pers;
 
-/**
- *
- * @author G-ilberto
- */
+import GroupC.ent.Passenger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import GroupC.ent.Passenger;
 
-
+/**
+ *
+ * @author up687444
+ */
 @Stateless
-public class PassengerFacade extends AbstractFacade<Passenger> {
+public class BookingFacade extends AbstractFacade<Passenger> {
 
     @PersistenceContext(unitName = "com.mycompany_GroupCProject_war_1.0-SNAPSHOTPU")
     private EntityManager em;
@@ -26,7 +25,8 @@ public class PassengerFacade extends AbstractFacade<Passenger> {
         return em;
     }
 
-    public PassengerFacade() {
+    public BookingFacade() {
         super(Passenger.class);
     }
+
 }

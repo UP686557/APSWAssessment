@@ -15,7 +15,12 @@ body{
 }
 
 form{
-    border: solid 1px red;
+    border: solid 1px black;
     padding:30px;
 }
 
+form>outputLabel,
+form>inputText{
+    display:block;
+    float:left;
+}

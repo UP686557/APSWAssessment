@@ -12,11 +12,11 @@ package GroupC.pers;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import GroupC.ent.Passenger;
+import GroupC.ent.Flight;
 
 
 @Stateless
-public class PassengerFacade extends AbstractFacade<Passenger> {
+public class FlightFacades extends AbstractFacade<Flight> {
 
     @PersistenceContext(unitName = "com.mycompany_GroupCProject_war_1.0-SNAPSHOTPU")
     private EntityManager em;
@@ -26,7 +26,7 @@ public class PassengerFacade extends AbstractFacade<Passenger> {
         return em;
     }
 
-    public PassengerFacade() {
-        super(Passenger.class);
+    public FlightFacades() {
+        super(Flight.class);
     }
 }

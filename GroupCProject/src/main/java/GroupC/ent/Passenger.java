@@ -6,20 +6,19 @@
 package GroupC.ent;
 
 import java.io.Serializable;
-import java.util.Date;
-import javax.inject.Named;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.inject.Named;
 
 /**
  *
  * @author G-ilberto
  */
 @Entity
-@Named(value = "passenger")
+@Named(value="passenger")
 public class Passenger implements Serializable {
 
     
@@ -30,9 +29,8 @@ public class Passenger implements Serializable {
     
     private Long id;
     @ManyToOne
-    private Flights flightNum;
+    private Flight flightNum;
     private String firstName, lastName, address, postcode, phoneNum, emailAddress;
-    private Date date;
     private static final long serialVersionUID = 1L;
 
     public Passenger(String userName, String firstName, String lastName, String address, String postcode, String phoneNum, String emailAddress) {
@@ -56,7 +54,7 @@ public class Passenger implements Serializable {
         this.id = id;
     }
 
-    public Flights getFlightNum() {
+    public Flight getFlightNum() {
         return flightNum;
     }
 
@@ -116,7 +114,7 @@ public class Passenger implements Serializable {
         this.emailAddress = emailAddress;
     }
 
-    public void setFlightNum(Flights flightNum) {
+    public void setFlightNum(Flight flightNum) {
         this.flightNum = flightNum;
     }
 

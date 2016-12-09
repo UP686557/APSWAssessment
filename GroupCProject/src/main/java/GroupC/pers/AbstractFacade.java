@@ -7,12 +7,10 @@ package GroupC.pers;
 
 /**
  *
- * @author G-ilberto
+ * @author jim briggs
  */
-
 import java.util.List;
 import javax.persistence.EntityManager;
-
 
 public abstract class AbstractFacade<T> {
 
