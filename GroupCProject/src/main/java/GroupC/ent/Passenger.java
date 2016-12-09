@@ -20,12 +20,13 @@ import javax.persistence.ManyToOne;
 public class Passenger implements Serializable {
 
     @ManyToOne
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private Flights flightNum;
     private String userName, firstName, lastName, address, postcode, phoneNum, emailAddress;
+    private static final long serialVersionUID = 1L;
 
-    public Passenger(){
-        
-    }
     public Passenger(String userName, String firstName, String lastName, String address, String postcode, String phoneNum, String emailAddress) {
         this.userName = userName;
         this.firstName = firstName;
@@ -34,6 +35,17 @@ public class Passenger implements Serializable {
         this.postcode = postcode;
         this.phoneNum = phoneNum;
         this.emailAddress = emailAddress;
+    }
+
+    public Passenger() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Flights getFlightNum() {
@@ -98,19 +110,6 @@ public class Passenger implements Serializable {
 
     public void setFlightNum(Flights flightNum) {
         this.flightNum = flightNum;
-    }
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     @Override
