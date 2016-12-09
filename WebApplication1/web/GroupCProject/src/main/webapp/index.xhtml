@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE xhtml PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Flight Booking</title>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h1>Passenger Details</h1>
+            <h:outputLabel value="Username"/>
+            <h:inputText required="true" value="#{Passenger.userName}"/>
+            
+            <h:outputLabel value="First Name"/>
+            <h:inputText required="true" value="#{Passenger.firstName}"/>
+            
+            <h:outputLabel value="Surname"/>
+            <h:inputText required="true" value="#{Passenger.lastName}"/>
+            
+            <h:outputLabel value="First Line of Address"/>
+            <h:inputText value="#{Passenger.address}"/>
+            
+            <h:outputLabel value="Post Code"/>
+            <h:inputText value="#{Passenger.postcode}"
+                <f:validateRegex pattern="(GIR 0AA)|((([A-Z-[QVX]][0-9][0-9]?)|(([A-Z-[QVX]][A-Z-[IJZ]][0-9][0-9]?)|(([A-Z-[QVX]][0-9][A-HJKPSTUW])|([A-Z-[QVX]][A-Z-[IJZ]][0-9][ABEHMNPRVWXY]))))[0-9][A-Z-[CIKMOV]]{2})"/>
+            </h:inputText>
+                         
+            <h:outputLabel value="Phone Number"/>
+            <h:inputText value="#{Passenger.phoneNum}">
+                <f:validateRegex pattern="^((\(?0\d{4}\)?\s?\d{3}\s?\d{3})|(\(?0\d{3}\)?\s?\d{3}\s?\d{4})|(\(?0\d{2}\)?\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$"/>
+            </h:inputText>
+            
+            <h:outputLabel value="Email"/>
+            <h:inputText value ="#{Passenger.emailAddress}">
+                <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+            </h:inputText>
+            
+
+                
+            <h1>Flight Details</h1>            
+            <h:outputLabel value="Flight Number"/>
+            <h:inputText required="true" value="#{Flights.flightNum}">
+                <f:validateRegex pattern="[A-Z]{2}[0-9]{1,4}"/>
+            </h:inputText>
+            
+            <h:outputLabel value="Origin"/>
+            <h:inputText required="true" value="#{Flights.origin}">
+                <f:validateRegex pattern="[A-Z]{3}"/>
+            </h:inputText>
+            
+            <h:outputLabel value="Destination"/>
+            <h:inputText required="true" value="#{Flights.destination}">
+                <f:validateRegex pattern="[A-Z]{3}"/>
+            </h:inputText>
+
+            <h:outputLabel value="Date"/>
+            <h:inputText required="true" value="#{Flights.dated}"/>             
+            
+            <h:commandButton action="" value="Go"/>
+        </h:form>
+        
+       <h1>Table</h1>
+        <h:dataTable value="#{Flights.passengers}" var="passenger">
+            <h:column>
+                <f:facet name="header">Flight Number</f:facet>
+                #{passenger.flightNum}
+            </h:column>
+            <h:column>
+                <f:facet name="header">First Name</f:facet>
+                #{passenger.firstName}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Last Name</f:facet>
+                #{passenger.lastName}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Edit</f:facet>
+                <h:form target="_blank">
+                    <h:commandButton value="Edit"/>
+                </h:form>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Delete</f:facet>
+                <h:form>
+                    <h:commandButton action="" value="Delete"/>
+                </h:form>
+            </h:column>
+        </h:dataTable>
+    </h:body>
+</html>
