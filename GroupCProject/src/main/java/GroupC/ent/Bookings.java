@@ -47,10 +47,6 @@ public class Bookings implements Serializable {
     public void setUserName(Passenger userName) {
         this.userName = userName;
     }
-    
-    
-    
-
 
     public Flights getFlightNum() {
         return flightNum;

@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.inject.Named;
 import javax.persistence.ManyToOne;
 
 /**
@@ -20,6 +21,7 @@ import javax.persistence.ManyToOne;
  * @author G-ilberto
  */
 @Entity
+@Named(value = "flights")
 public class Flights implements Serializable {
 
     @ManyToOne

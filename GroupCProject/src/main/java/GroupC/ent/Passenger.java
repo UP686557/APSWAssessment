@@ -7,6 +7,7 @@ package GroupC.ent;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.inject.Named;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,6 +19,7 @@ import javax.persistence.ManyToOne;
  * @author G-ilberto
  */
 @Entity
+@Named(value = "passenger")
 public class Passenger implements Serializable {
 
     

@@ -9,60 +9,63 @@
     </h:head>
     <h:body>
         <h:form>
-            <h1>Passenger Details</h1>
-            <h:outputLabel value="Username"/>
-            <h:inputText required="true" value="#{Passenger.userName}"/>
-            
-            <h:outputLabel value="First Name"/>
-            <h:inputText required="true" value="#{Passenger.firstName}"/>
-            
-            <h:outputLabel value="Surname"/>
-            <h:inputText required="true" value="#{Passenger.lastName}"/>
-            
-            <h:outputLabel value="First Line of Address"/>
-            <h:inputText value="#{Passenger.address}"/>
-            
-            <h:outputLabel value="Post Code"/>
-            <h:inputText value="#{Passenger.postcode}"
-                <f:validateRegex pattern="(GIR 0AA)|((([A-Z-[QVX]][0-9][0-9]?)|(([A-Z-[QVX]][A-Z-[IJZ]][0-9][0-9]?)|(([A-Z-[QVX]][0-9][A-HJKPSTUW])|([A-Z-[QVX]][A-Z-[IJZ]][0-9][ABEHMNPRVWXY]))))[0-9][A-Z-[CIKMOV]]{2})"/>
-            </h:inputText>
-                         
-            <h:outputLabel value="Phone Number"/>
-            <h:inputText value="#{Passenger.phoneNum}">
-                <f:validateRegex pattern="^((\(?0\d{4}\)?\s?\d{3}\s?\d{3})|(\(?0\d{3}\)?\s?\d{3}\s?\d{4})|(\(?0\d{2}\)?\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$"/>
-            </h:inputText>
-            
-            <h:outputLabel value="Email"/>
-            <h:inputText value ="#{Passenger.emailAddress}">
-                <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-            </h:inputText>
-            
+            <h1>Details</h1>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Flight Number"/>
+                <h:inputText required="true" value="#{flights.flightNum}" validatorMessage="Error with Flight Number">
+                    <f:validateRegex pattern="[A-Z]{2}[0-9]{1,4}"/>
+                </h:inputText>
 
+                <h:outputLabel value="Origin"/>
+                <h:inputText required="true" value="#{flights.origin}" validatorMessage="Error with Origin">
+                    <f:validateRegex pattern="[A-Z]{3}"/>
+                </h:inputText>
+
+                <h:outputLabel value="Destination"/>
+                <h:inputText required="true" value="#{flights.destination}" validatorMessage="Error with Destination">
+                    <f:validateRegex pattern="[A-Z]{3}"/>
+                </h:inputText>
+
+                <h:outputLabel value="Date (DD-MM-YYYY)"/>
+                <h:inputText required="true" value="#{flights.dated}" validatorMessage="Error with Date">
+                    <f:convertDateTime pattern="dd-mm-yyyy"/> 
+                </h:inputText>
                 
-            <h1>Flight Details</h1>            
-            <h:outputLabel value="Flight Number"/>
-            <h:inputText required="true" value="#{Flights.flightNum}">
-                <f:validateRegex pattern="[A-Z]{2}[0-9]{1,4}"/>
-            </h:inputText>
-            
-            <h:outputLabel value="Origin"/>
-            <h:inputText required="true" value="#{Flights.origin}">
-                <f:validateRegex pattern="[A-Z]{3}"/>
-            </h:inputText>
-            
-            <h:outputLabel value="Destination"/>
-            <h:inputText required="true" value="#{Flights.destination}">
-                <f:validateRegex pattern="[A-Z]{3}"/>
-            </h:inputText>
+                <h:outputLabel value="Username"/>
+                <h:inputText required="true" value="#{passenger.userName}">
+                    <f:validateRegex pattern="^[a-zA-Z0-9]{6,}$"/>
+                </h:inputText>
 
-            <h:outputLabel value="Date"/>
-            <h:inputText required="true" value="#{Flights.dated}"/>             
+                <h:outputLabel value="First Name"/>
+                <h:inputText required="true" value="#{passenger.firstName}" validatorMessage="First Name Required"/>
+
+                <h:outputLabel value="Surname"/>
+                <h:inputText required="true" value="#{passenger.lastName}" validatorMessage="Surname Required"/>
+
+                <h:outputLabel value="First Line of Address"/>
+                <h:inputText value="#{passenger.address}" validatorMessage="Address Required"/>
+
+                <h:outputLabel value="Post Code"/>
+                <h:inputText value="#{passenger.postcode}" validatorMessage="Error with Post Code">
+                    <f:validateRegex pattern="(GIR 0AA)|((([A-Z-[QVX]][0-9][0-9]?)|(([A-Z-[QVX]][A-Z-[IJZ]][0-9][0-9]?)|(([A-Z-[QVX]][0-9][A-HJKPSTUW])|([A-Z-[QVX]][A-Z-[IJZ]][0-9][ABEHMNPRVWXY]))))[0-9][A-Z-[CIKMOV]]{2})"/>
+                </h:inputText>
+
+                <h:outputLabel value="Phone Number"/>
+                <h:inputText value="#{passenger.phoneNum}" validatorMessage="Error with phone number">
+                    <f:validateRegex pattern="^^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$"/>
+                </h:inputText>
+
+                <h:outputLabel value="Email"/>
+                <h:inputText value ="#{passenger.emailAddress}" validatorMessage="Error with email address">
+                    <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                </h:inputText>
+            </h:panelGrid>
             
-            <h:commandButton action="" value="Go"/>
+            <h:commandButton action="#{flight.getFlightNum}" value="Go"/>
         </h:form>
         
        <h1>Table</h1>
-        <h:dataTable value="#{Flights.passengers}" var="passenger">
+        <h:dataTable value="#{flights.passengers}" var="passenger">
             <h:column>
                 <f:facet name="header">Flight Number</f:facet>
                 #{passenger.flightNum}
@@ -78,13 +81,13 @@
             <h:column>
                 <f:facet name="header">Edit</f:facet>
                 <h:form target="_blank">
-                    <h:commandButton value="Edit"/>
+                    <!--<h:commandButton value="Edit"/>-->
                 </h:form>
             </h:column>
             <h:column>
                 <f:facet name="header">Delete</f:facet>
                 <h:form>
-                    <h:commandButton action="" value="Delete"/>
+                    <!--<h:commandButton action="" value="Delete"/>-->
                 </h:form>
             </h:column>
         </h:dataTable>

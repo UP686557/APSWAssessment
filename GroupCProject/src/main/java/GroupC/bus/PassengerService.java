@@ -23,17 +23,27 @@ public class PassengerService {
     @EJB
     private FlightsFacade af;
 
-/*    public Passenger changeHome (Passenger p, Flights a) throws BusinessException {
+    public Passenger changeFlight (Passenger p, Flights f) throws BusinessException {
         //marry up
         p = pf.edit(p);
-        a = af.edit(a);
-
+        f = af.edit(f);
         //business logic
-        p.getHome().getOccupants().remove(p);
-        p.setHome(a);
-        a.getOccupants().add(p);
-
+        p.setFlightNum(f);
         //return something
         return p;
-    }*/
+    }
+    
+    public Passenger changeAddress(Passenger p, String address) throws BusinessException{
+        p = pf.edit(p);
+        p.setAddress(address);
+        return p;
+    }
+    
+    public Flights removeFromFlight(Passenger p, Flights f){
+        p = pf.edit(p);
+        f = af.edit(f);
+        
+        f.getPassengers().remove(p);
+        return f;
+    }
 }

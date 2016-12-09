@@ -10,5 +10,5 @@ package GroupC.bus;
  * @author G-ilberto
  */
 public class BusinessException extends Exception {
-
+    
 }
