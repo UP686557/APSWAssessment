@@ -11,27 +11,27 @@
         <h:form>
             <h1>Passenger Details</h1>
             <h:outputLabel value="Username"/>
-            <h:inputText value="#{managedBean.username}"/>
+            <h:inputText value="#{Passenger.userName}"/>
             
             <h:outputLabel value="First Name"/>
-            <h:inputText value="#{managedBean.firstName}"/>
+            <h:inputText value="#{Passenger.firstName}"/>
             
             <h:outputLabel value="Surname"/>
-            <h:inputText value="#{managedBean.lastName}"/>
+            <h:inputText value="#{Passenger.lastName}"/>
             
             <h:outputLabel value="First Line of Address"/>
-            <h:inputText value="#{managedBean.firstLineAddress}"/>
+            <h:inputText value="#{Passenger.address}"/>
             
             <h:outputLabel value="Post Code"/>
-            <h:inputText value="#{managedBean.postCode}"/>
+            <h:inputText value="#{Passenger.postcode}"/>
             
             <h:outputLabel value="Phone Number"/>
-            <h:inputText value="#{managedBean.phoneNumber}">
+            <h:inputText value="#{Passenger.phoneNum}">
                 <!--<f:validateRegex pattern="^((\(?0\d{4}\)?\s?\d{3}\s?\d{3})|(\(?0\d{3}\)?\s?\d{3}\s?\d{4})|(\(?0\d{2}\)?\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$"/>-->
             </h:inputText>
             
             <h:outputLabel value="Email"/>
-            <h:inputText value ="#{managedBean.email}">
+            <h:inputText value ="#{Passenger.emailAddress}">
                 <!--<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />-->
             </h:inputText>
             
@@ -39,22 +39,18 @@
                 
             <h1>Flight Details</h1>            
             <h:outputLabel value="Flight Number"/>
-            <h:inputText value="#{managedBean.flightNo}"/>
+            <h:inputText value="#{Flights.flightNum}"/>
             
             <h:outputLabel value="Origin"/>
-            <h:inputText value="#{managedBean.origin}"/>
+            <h:inputText value="#{Flights.origin}"/>
             
             <h:outputLabel value="Destination"/>
-            <h:inputText value="#{managedBean.destination}"/>
+            <h:inputText value="#{Flights.destination}"/>
             
             <h:outputLabel value="Date"/>
-            <h:inputText value="#{managedBean.date}"/>
+            <h:inputText value="#{Flights.dated}"/>             
             
-            <h:outputLabel value="Time"/>
-            <h:inputText value="#{managedBean.time}"/>
-           
-            
-            <h:commandButton action="#{managedBean.go(contactManagerBean.name, contactManagerBean.email, contactManagerBean.phoneNumber)}" value="Go"/>
+            <!--<h:commandButton action="" value="Go"/>-->
         </h:form>
         
         <h1>Table</h1>
