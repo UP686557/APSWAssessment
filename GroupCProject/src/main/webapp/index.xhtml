@@ -11,78 +11,82 @@
         <h:form>
             <h1>Passenger Details</h1>
             <h:outputLabel value="Username"/>
-            <h:inputText value="#{Passenger.userName}"/>
+            <h:inputText required="true" value="#{Passenger.userName}"/>
             
             <h:outputLabel value="First Name"/>
-            <h:inputText value="#{Passenger.firstName}"/>
+            <h:inputText required="true" value="#{Passenger.firstName}"/>
             
             <h:outputLabel value="Surname"/>
-            <h:inputText value="#{Passenger.lastName}"/>
+            <h:inputText required="true" value="#{Passenger.lastName}"/>
             
             <h:outputLabel value="First Line of Address"/>
             <h:inputText value="#{Passenger.address}"/>
             
             <h:outputLabel value="Post Code"/>
-            <h:inputText value="#{Passenger.postcode}"/>
-            
+            <h:inputText value="#{Passenger.postcode}"
+                <f:validateRegex pattern="(GIR 0AA)|((([A-Z-[QVX]][0-9][0-9]?)|(([A-Z-[QVX]][A-Z-[IJZ]][0-9][0-9]?)|(([A-Z-[QVX]][0-9][A-HJKPSTUW])|([A-Z-[QVX]][A-Z-[IJZ]][0-9][ABEHMNPRVWXY]))))[0-9][A-Z-[CIKMOV]]{2})"/>
+            </h:inputText>
+                         
             <h:outputLabel value="Phone Number"/>
             <h:inputText value="#{Passenger.phoneNum}">
-                <!--<f:validateRegex pattern="^((\(?0\d{4}\)?\s?\d{3}\s?\d{3})|(\(?0\d{3}\)?\s?\d{3}\s?\d{4})|(\(?0\d{2}\)?\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$"/>-->
+                <f:validateRegex pattern="^((\(?0\d{4}\)?\s?\d{3}\s?\d{3})|(\(?0\d{3}\)?\s?\d{3}\s?\d{4})|(\(?0\d{2}\)?\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$"/>
             </h:inputText>
             
             <h:outputLabel value="Email"/>
             <h:inputText value ="#{Passenger.emailAddress}">
-                <!--<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />-->
+                <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
             </h:inputText>
             
 
                 
             <h1>Flight Details</h1>            
             <h:outputLabel value="Flight Number"/>
-            <h:inputText value="#{Flights.flightNum}"/>
+            <h:inputText required="true" value="#{Flights.flightNum}">
+                <f:validateRegex pattern="[A-Z]{2}[0-9]{1,4}"/>
+            </h:inputText>
             
             <h:outputLabel value="Origin"/>
-            <h:inputText value="#{Flights.origin}"/>
+            <h:inputText required="true" value="#{Flights.origin}">
+                <f:validateRegex pattern="[A-Z]{3}"/>
+            </h:inputText>
             
             <h:outputLabel value="Destination"/>
-            <h:inputText value="#{Flights.destination}"/>
-            
+            <h:inputText required="true" value="#{Flights.destination}">
+                <f:validateRegex pattern="[A-Z]{3}"/>
+            </h:inputText>
+
             <h:outputLabel value="Date"/>
-            <h:inputText value="#{Flights.dated}"/>             
+            <h:inputText required="true" value="#{Flights.dated}"/>             
             
-            <!--<h:commandButton action="" value="Go"/>-->
+            <h:commandButton action="" value="Go"/>
         </h:form>
         
-       <!-- <h1>Table</h1>
-        <h:dataTable value="#{managedBean.flightNo}" var="flightNo">
+       <h1>Table</h1>
+        <h:dataTable value="#{Flights.passengers}" var="passenger">
             <h:column>
                 <f:facet name="header">Flight Number</f:facet>
-                #{flightNo.no}
+                #{passenger.flightNum}
             </h:column>
             <h:column>
-                <h:dataTable value="#{managedBean.passenger}" var="passenger">
-                    <h:column>
-                        <f:facet name="header">First Name</f:facet>
-                        #{passenger.firstName}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Last Name</f:facet>
-                        #{passenger.lastName}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Edit</f:facet>
-                        <h:form target="_blank">
-                            <h:commandButton value="Edit"/>
-                        </h:form>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Delete</f:facet>
-                        <h:form>
-                            <h:commandButton action="" value="Delete"/>
-                        </h:form>
-                    </h:column>
-                </h:dataTable>
+                <f:facet name="header">First Name</f:facet>
+                #{passenger.firstName}
             </h:column>
-        </h:dataTable>-->
+            <h:column>
+                <f:facet name="header">Last Name</f:facet>
+                #{passenger.lastName}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Edit</f:facet>
+                <h:form target="_blank">
+                    <h:commandButton value="Edit"/>
+                </h:form>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Delete</f:facet>
+                <h:form>
+                    <h:commandButton action="" value="Delete"/>
+                </h:form>
+            </h:column>
+        </h:dataTable>
     </h:body>
 </html>
