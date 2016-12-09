@@ -6,6 +6,7 @@
 package GroupC.ent;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,12 +20,17 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Passenger implements Serializable {
 
-    @ManyToOne
+    
+    private String userName;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    
     private Long id;
+    @ManyToOne
     private Flights flightNum;
-    private String userName, firstName, lastName, address, postcode, phoneNum, emailAddress;
+    private String firstName, lastName, address, postcode, phoneNum, emailAddress;
+    private Date date;
     private static final long serialVersionUID = 1L;
 
     public Passenger(String userName, String firstName, String lastName, String address, String postcode, String phoneNum, String emailAddress) {

@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -21,20 +22,37 @@ import java.util.Date;
 @Entity
 public class Flights implements Serializable {
 
-    @OneToMany(mappedBy = "flightNum")
+    @ManyToOne
+    private Passenger userName;
     private ArrayList<Passenger> passengers;
     private String flightNum, origin, destination;
-    private Date dated;
+    private Date date;
     private int duration;
 
     public Flights(){
         
     }
+
+    public Passenger getUserName() {
+        return userName;
+    }
+
+    public void setUserName(Passenger userName) {
+        this.userName = userName;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
     public Flights(String flightNum, String origin, String destination, Date dated, int duration, ArrayList<Passenger> passengers) {
         this.flightNum = flightNum;
         this.origin = origin;
         this.destination = destination;
-        this.dated = dated;
+        this.date = date;
         this.duration = duration;
         this.passengers = passengers;
     }
@@ -64,11 +82,11 @@ public class Flights implements Serializable {
     }
 
     public Date getDated() {
-        return dated;
+        return date;
     }
 
-    public void setDated(Date dated) {
-        this.dated = dated;
+    public void setDated(Date date) {
+        this.date = date;
     }
 
     public int getDuration() {
